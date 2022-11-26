@@ -1,6 +1,6 @@
 # MacintoshPi
 
-MacintoshPi is a small project that allows running full-screen versions of Apple's *Mac OS 7*, *Mac OS 8* and *Mac OS 9* with sound, active Internet connection and modem emulation under *Raspberry Pi*. All this without the X.org manager, only a multimedia SDL2 library and from the CLI / *Raspberry Pi OS Lite*. This lets emulators use full power of *Raspberry Pi*, making them more stable and useful in combination with additional retro-software. Installation requires running a single script on a clean *Raspberry Pi OS Lite* and waiting about two hours for the packages to compile and install. In addition, thanks to a document contained in the project, it is possible in dual-boot to place the fastest (bare-metal) *Commodore 64/128/PET* emulator **BMC64**, thus building an interesting retro package on a single SD card. The entire *MacintoshPi* project runs on **Raspberry Pi Zero 2 W**, **2**, **3**, **3B**, **3B+** (at present, it does not run on version 4).
+MacintoshPi is a small project that allows running full-screen versions of Apple's *Mac OS 7*, *Mac OS 8* and *Mac OS 9* with sound, active Internet connection and modem emulation under *Raspberry Pi*. All this without the X.org manager, only a multimedia SDL2 library and from the CLI / *Raspberry Pi OS Lite*. This lets emulators use full power of *Raspberry Pi*, making them more stable and useful in combination with additional retro-software. Installation requires running a single script on a clean *Raspberry Pi OS Lite* and waiting about two hours for the packages to compile and install. In addition, thanks to a document contained in the project, it is possible in dual-boot to place the fastest (bare-metal) *Commodore 64/128/PET* emulator **BMC64**, thus building an interesting retro package on a single SD card. The entire *MacintoshPi* project runs on **Raspberry Pi Zero W**, **Zero 2 W**, **2**, **2B**, **3**, **3B**, **3A+**, **3B+** (at present, it does not run on version 4).
 
 Below you will find a short clip showing what MacintoshPi can do:
 
@@ -18,13 +18,21 @@ The project consists of the following auto-compiling and installing bash scripts
 * Commodore 64/128/PET emulator **[VICE](https://vice-emu.sourceforge.io)**.
 * **[MacintoshPi Virtual Modem](https://github.com/jaromaz/MacintoshPi#macintoshpi-virtual-modem)** using the **[tty0tty](https://github.com/freemed/tty0tty)** and **[tcpser](http://www.jbrain.com/pub/linux/serial/)** projects, running with the two aforementioned emulators for *Apple* and *Commodore* products, and on *Raspberry Pi OS* itself, as well as allowing any original terminal retro-software to connect with modern-day telnet BBSs.
 * CD-ROM, DVD-ROM emulator **[CDEmu](https://cdemu.sourceforge.io)** which allows mounting CD images (iso, toast, cue/bin, mds/mdf etc.) under *Raspberry Pi OS* - runs with *BasiliskII* and *SheepShaver* emulators, as well as on *Raspberry Pi OS*. The emulators are configured automatically to support that virtual CD-ROM drive.
-* A consistent **[MacintoshPi Launcher](https://github.com/jaromaz/MacintoshPi#macintoshpi-launcher)** that runs all of those systems at different resolutions (after reboot) and in different configurations.
+* A consistent **[MacintoshPi Launcher](https://github.com/jaromaz/MacintoshPi#macintoshpi-launcher)** that runs all of those systems at different resolutions (after reboot), in different configurations, with autostart support and with various startup chimes.
 * **[SyncTERM](https://syncterm.bbsdev.net)** - an application for connecting with BBSs from the *Raspberry Pi OS*, compiled in combination with the *SDL library*.
 * Information how to run *Raspberry Pi OS* in **dual-boot** with **[BMC64](https://accentual.com/bmc64/)**, the fastest *Commodore* emulator for *Raspberry Pi* (bare metal/low latency emulator).
 
 **Mac OS images** are pre-configured to support online connections.
 
 Special thanks to [Christian Bauer](https://www.cebix.net) and [kanjitalk755](https://github.com/kanjitalk755).
+
+As a bonus, additional auto-compiling and installing bash scripts for a bit older machines:
+
+* Apple-1 computer emulator **[pom1](http://pom1.sourceforge.net)**.
+* Apple \]\[ computer emulator **[linapple](https://linapple.sourceforge.net/screenshots.html)** supporting Apple \]\[, Apple \]\[+ , Apple //e, and enhanced Apple //e computers.
+* Altair/IMSAI emulator **[z80pack](https://www.autometer.de/unix4fun/z80pack/)** supporting Altair 8800 system with 8080 or Z80 CPU, IMSAI 8080 system with 8080 or Z80 CPU, generic Z80/8080 CPU emulation, emulation of a complete system for running CP/M 1, CP/M 2, CPM 3 and MP/M 2.
+
+Additional instructions for these emulators can be found in **[README.md](older/README.md)** in the [older](older/README.md) directory.
 
 ## Installation
 
@@ -60,6 +68,7 @@ Each system must be launched with the appropriate command: ```mac os7```, ```m
 *Basilisk II* and *SheepShaver* emulators can be stopped by using the key combination *CTRL+SHIFT+ESC*. This causes an immediate return to the command line. The *COMMAND* key is acquired with the left *ALT* key in *Mac OS 9*, and with the *CTRL* key in *Mac OS 7* and *Mac OS 8*.
 For more information about those emulators visit the [BasiliskII](https://basilisk.cebix.net) and [SheepShaver](https://sheepshaver.cebix.net) websites.
 
+![MacintoshPi @ Raspberry Pi](assets/img/maconst.png)
 
 ### VICE
 
@@ -68,21 +77,13 @@ The script that compiles the **VICE** *Commodore* emulator which can be used fo
 ### MacintoshPi Virtual Modem
 
 A script that compiles and installs a virtual modem in *Raspberry Pi OS*, allowing connection with modern-day telnet BBSs using any terminal software launched on the aforementioned *Basilisk II*, *SheepShaver* and *VICE* emulators, and on *Raspberry Pi OS* itself.
-The *MacintoshPi Virtual Modem* is controlled by systemd and uses the *tpcser* software which, through the *tty0tty* project, writes to virtual device ```/dev/tnt0```. The data can be read from another virtual device ```/dev/tnt1```, which thus becomes a virtual serial port in the system.
-
-The modem must be started using the following command:
-
-```sudo systemctl start vmodem```
+The *MacintoshPi Virtual Modem* is controlled by systemd and uses the *tpcser* software which, through the *tty0tty* project, writes to virtual device ```/dev/tnt0```. The data can be read from another virtual device ```/dev/tnt1```, which thus becomes a virtual serial port in the system. The modem launches by default after the system boots.
 
 It can be reset or paused with the standard systemd commands:
 
 ```sudo systemctl stop vmodem```
 
 ```sudo systemctl reset vmodem```
-
-The virtual modem can also be left running permanently in the system using the following command:
-
-```sudo systemctl enable --now vmodem```
 
 Speed (bps) change options can be set in the configuration file as per example entries provided with it:
 
@@ -141,7 +142,9 @@ The maximum emulator performance is achieved in the native resolution of the emu
 
 The launcher's task is to launch a given version of *Mac OS*, and if one is already running with appropriate parameters, then to overwrite ```config.txt``` and any other system files with the appropriate screen resolution and position assigned to a specific system or any other defined application, and then to launch the emulator or application right after a system restart, this time in the new resolution.
 
-The name of the directory with the data with which the system is to be overwritten is identical as the name of the parameter following the ```mac``` command, e.g. ```mac os8-480``` will restart *Raspberry Pi OS* in 640x480 resolution, and then launch ```Mac OS 8``` also in that resolution, but the ```mac os8``` command will simply launch *Mac OS 8* in the most recently selected resolution.
+The name of the directory with the data with which the system is to be overwritten is identical as the name of the parameter following the ```mac``` command, e.g. ```mac os8-480``` will restart *Raspberry Pi OS* in 640x480 resolution, and then launch *Mac OS 8* also in that resolution, but the ```mac os8``` command will simply launch *Mac OS 8* in the most recently selected resolution.
+
+Various startup chimes are played at the launch of each system - depending on the selected resolution: Macintosh 128K, Macintosh Classic II, Macintosh Color Classic, Macintosh Performa 520, Power Macintosh 550, Power Macintosh G3 sounds.
 
 The Launcher allows also ```.img``` or ```.dsk``` files to be added to *Mac OS* using e.g. ```mac os7 file.img``` - then the *Mac OS* concerned will be launched and the image content will appear on the desktop as an additional drive.
 
@@ -192,6 +195,8 @@ The keyboard and mouse are *Logiteh MK295 Silent Wireless Combo* - they only s
 
 ### About this Project
 I've been working on the topic of Apple computers emulation for about five years now (because I really like and appreciate Apple retro systems), and the topic is quite complex: problems with building the correct images, with configuring system images for Internet support, with the appropriate configs for emulators, with the correct options for compiling emulators and (separately) SDL2 (because, of course, SDL2 from a package won't work in emulation), with performance, with the correct compilation of NetDriver, with versions of libraries (because they have to be legacy), with minimizing mouse movement delay, problems with sound, etc. etc. Of course, I'm talking about the problems that beginners will encounter, after which they will get discouraged and throw these emulators out. Since I solved all these problems on my Raspberry Pi, I decided to make this solution available to Everyone, so that you can just run one script and get all three systems in one package without any effort - and that's what this little project is.
+
+For more information (and hi-res photos) please visit my website: https://jm.iq.pl/MacintoshPi
 
 ### Support
 
