@@ -30,7 +30,7 @@ HDD_IMAGES="https://homer-retro.space/appfiles"
 ASOFT="${HDD_IMAGES}/as/asoft.tar.gz"
 ROM4OS[7]="https://github.com/macmade/Macintosh-ROMs/raw/18e1d0a9756f8ae3b9c005a976d292d7cf0a6f14/Performa-630.ROM"
 ROM4OS[8]="https://github.com/macmade/Macintosh-ROMs/raw/main/Quadra-650.ROM"
-ROM4OS[9]="https://www.redundantrobot.com/sheepshaver_files/roms/newworld86.rom.zip"
+ROM4OS[9]="https://archive.org/download/newworld86.rom/newworld86.rom.zip"
 
 
 function usercheck {
