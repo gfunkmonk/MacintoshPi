@@ -29,7 +29,7 @@ updateinfo
 sudo apt-get install -y dpkg-dev dkms libao-dev intltool libsndfile1-dev libbz2-dev \
                         liblzma-dev gtk-doc-tools gobject-introspection libgirepository1.0-dev \
                         python3-matplotlib libsamplerate0-dev cmake raspberrypi-kernel-headers \
-                        dh-systemd
+                        dh-systemd dh-python python3-gi
 
 [ $? -ne 0 ] && net_error "CDEmu apt packages"
 
