@@ -23,7 +23,6 @@ printf "\e[92m"; echo '
 
 '; printf "\e[0m"; sleep 2
 source ../assets/func.sh
-usercheck
 updateinfo
 MacOS_version 9
 
@@ -56,7 +55,7 @@ ignoresegv true
 idlewait true
 seriala /dev/tnt1
 serialb /dev/null
-extfs /home/pi/Downloads
+extfs /home/$(whoami)/Downloads
 screen win/800/600
 # screen dga/800/600
 # screen win/640/480

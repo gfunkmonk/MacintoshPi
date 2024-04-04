@@ -12,7 +12,6 @@
 # www: https://jm.iq.pl  e-mail: jm at iq.pl
 # --------------------------------------------------------
 source assets/func.sh
-usercheck
 logo
 updateinfo
 installinfo
