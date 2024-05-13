@@ -127,7 +127,7 @@ In this case, I am using *Fedora Linux* distribution. The SD card's name is *mm
     PARTUUID=163f3c16-02  /               ext4    defaults,noatime  0       1
     PARTUUID=163f3c16-01  /boot           vfat    defaults          0       2
     ```
-23. In the last line of that file, indicate mounting of the first partition's resource to directory ```/BMC64``` with *read and write* rights for the ```pi``` user - just replace the phrase ```defaults``` in the fourth column with ```rw,uid=1000,gid=1000```. In the second column, replace directory ```/boot``` with ```/BMC64```. The whole example file ```/mnt/p2/etc/fstab``` now has the following form:
+23. In the last line of that file, indicate mounting of the first partition's resource to directory ```/BMC64``` with *read and write* rights for the current user - just replace the phrase ```defaults``` in the fourth column with ```rw,uid=1000,gid=1000```. In the second column, replace directory ```/boot``` with ```/BMC64```. The whole example file ```/mnt/p2/etc/fstab``` now has the following form:
     ```
     proc                  /proc           proc    defaults          0       0
     PARTUUID=163f3c16-03  /boot           vfat    defaults          0       2
